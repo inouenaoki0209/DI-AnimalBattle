@@ -3,6 +3,7 @@ import { Select, Button, VStack, HStack, Box } from "@chakra-ui/react";
 import { Fish } from "./fish";
 import { Animals } from "./Animals";
 import { MainClass } from "./mainClass";
+
 export type selectType = "Animals" | "Fish";
 
 export const AnimalFishBattle: React.FC = () => {
@@ -25,6 +26,7 @@ export const AnimalFishBattle: React.FC = () => {
     if (mainClass) {
       mainClass.setItem(event.target.value);
     }
+    window.console.log(selectedItem1);
   };
 
   const handleSet2 = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,6 +34,7 @@ export const AnimalFishBattle: React.FC = () => {
     if (mainClass) {
       mainClass.setItem(event.target.value);
     }
+    window.console.log(selectedItem2);
   };
 
   const handleBattle = () => {
@@ -45,11 +48,11 @@ export const AnimalFishBattle: React.FC = () => {
   const handleReset = () => {
     if (mainClass) {
       mainClass.destroy();
-    }
     // プルダウンを初期状態に戻している
-    setSelectedItem1('選択1');
-    setSelectedItem2('選択2');
+    setSelectedItem1(mainClass.getAnimalData()[0].name);
+    setSelectedItem2(mainClass.getAnimalData()[0].name);
     setResult("");
+    }
   };
 
   return (
@@ -71,34 +74,44 @@ export const AnimalFishBattle: React.FC = () => {
       {mainClass && (
         <HStack spacing={4}>
           <Select
-            placeholder="選択1"
             value={selectedItem1}
             onChange={handleSet1}
           >
             {mainClass.getAnimalData().map((animal) => (
-              <option key={animal.name} value={animal.name}>
+              <option
+                key={animal.name}
+                value={animal.name}
+              >
                 {animal.name}
               </option>
             ))}
           </Select>
           <Box>vs</Box>
           <Select
-            placeholder="選択2"
             value={selectedItem2}
             onChange={handleSet2}
           >
             {mainClass.getAnimalData().map((animal) => (
-              <option key={animal.name} value={animal.name}>
+              <option
+                key={animal.name}
+                value={animal.name}
+              >
                 {animal.name}
               </option>
             ))}
           </Select>
         </HStack>
       )}
-      <Button onClick={handleBattle} colorScheme="red">
+      <Button
+        onClick={handleBattle}
+        colorScheme="red"
+      >
         Battle!
       </Button>
-      <Button onClick={handleReset} colorScheme="gray">
+      <Button
+        onClick={handleReset}
+        colorScheme="gray"
+      >
         Reset
       </Button>
       <Box>{result}</Box>

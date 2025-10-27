@@ -12,17 +12,19 @@ export class Fish implements ItemInterFace {
     { name: "しらす", strong: 0 },
   ];
 
-  private selectedFish1: itemType | null = null;
-  private selectedFish2: itemType | null = null;
+  private selectedFish1: itemType = this.fishData[0];
+  private selectedFish2: itemType = this.fishData[0];
 
   // アイテムを設定
   public set = (name: string) => {
     // 選択１や選択２が選ばれてた際にはnullを入れる
     const fish = this.fishData.find(fishItem => fishItem.name === name);
-    if (!this.selectedFish1) {
-      this.selectedFish1 = fish || null;
-    } else {
-      this.selectedFish2 = fish || null;
+    if (fish) {
+      if (!this.selectedFish1) {
+        this.selectedFish1 = fish;
+      } else {
+        this.selectedFish2 = fish;
+      }
     }
   };
 
@@ -42,8 +44,8 @@ export class Fish implements ItemInterFace {
 
   // 現在の選択を削除
   public destroy = () => {
-    this.selectedFish1 = null;
-    this.selectedFish2 = null;
+    this.selectedFish1 = this.fishData[0];
+    this.selectedFish2 = this.fishData[0];
   };
 
   // アイテムデータを取得
