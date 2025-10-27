@@ -6,6 +6,7 @@ export class Animals implements ItemInterFace {
    * strong 強さの数値
    */
   public animalData: Array<itemType> = [
+    { name: "バハムート", strong: 300 },
     { name: "ライオン", strong: 3 },
     { name: "シマウマ", strong: 2 },
     { name: "うさぎ", strong: 1 },
