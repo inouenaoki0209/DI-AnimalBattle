@@ -6,7 +6,7 @@ export class Fish implements ItemInterFace {
    * strong 強さの数値
    */
   public fishData: Array<itemType> = [
-    { name: "ヒトガタ", strong: 300 },
+    { name: "エンタープライズ", strong: 300 },
     { name: "さめ", strong: 3 },
     { name: "まぐろ", strong: 2 },
     { name: "さけ", strong: 1 },
