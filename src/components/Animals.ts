@@ -13,16 +13,18 @@ export class Animals implements ItemInterFace {
     { name: "ねずみ", strong: 0 },
   ];
 
-  private selectedAnimal1: itemType | null = null;
-  private selectedAnimal2: itemType | null = null;
+  private selectedAnimal1: itemType = this.animalData[0];
+  private selectedAnimal2: itemType = this.animalData[0];
 
   // アイテムを設定
   public set = (name: string) => {
     const animal = this.animalData.find(animal => animal.name === name);
-    if (!this.selectedAnimal1) {
-      this.selectedAnimal1 = animal || null;
-    } else {
-      this.selectedAnimal2 = animal || null;
+    if (animal) {
+      if (!this.selectedAnimal1) {
+        this.selectedAnimal1 = animal;
+      } else {
+        this.selectedAnimal2 = animal;
+      }
     }
   };
 
@@ -30,20 +32,26 @@ export class Animals implements ItemInterFace {
   public battle = (): string => {
     if (this.selectedAnimal1 && this.selectedAnimal2) {
       if (this.selectedAnimal1.strong > this.selectedAnimal2.strong) {
+        window.console.log(this.selectedAnimal1);
+        window.console.log(this.selectedAnimal2);
         return `${this.selectedAnimal1.name} の勝ち！`;
       } else if (this.selectedAnimal1.strong < this.selectedAnimal2.strong) {
+        window.console.log(this.selectedAnimal1);
+        window.console.log(this.selectedAnimal2);
         return `${this.selectedAnimal2.name} の勝ち！`;
       } else {
         return "引き分け！";
       }
     }
+    window.console.log(this.selectedAnimal1);
+    window.console.log(this.selectedAnimal2);
     return "両方の動物を選択してください。";
   };
 
   // 現在の選択を削除
   public destroy = () => {
-    this.selectedAnimal1 = null;
-    this.selectedAnimal2 = null;
+    this.selectedAnimal1 = this.animalData[0];
+    this.selectedAnimal2 = this.animalData[0];
   };
 
   // アイテムデータを取得

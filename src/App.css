@@ -105,3 +105,8 @@ span.title {
     padding: 40px;
     margin: 0 auto;
 }
+
+.btn{
+    color: black;
+    transition: all 0.3s;
+}
