@@ -1,8 +1,9 @@
-import { EventName, inOBJType, unitType } from "./createTypes";
+import { EventName, unitType } from "./createTypes";
 import * as fdsa from "./createTypes";
 
 const setting: unitType.SettingType = "a";
 const edit: fdsa.editType = '2'
+const data = {}
 export type itemType = {
   name: string,
   strong: number
